@@ -11,7 +11,7 @@ class CairoConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = "shared=True"
     generators = "cmake"
-    requires = "gmp/6.1.2@bincrafters/stable", "mpfr/4.0.1@vbeffara/testing"
+    requires = "mpfr/4.0.1@vbeffara/testing"
 
     def source(self):
         tools.get(
