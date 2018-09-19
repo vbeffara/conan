@@ -1,0 +1,30 @@
+from conans import ConanFile, AutoToolsBuildEnvironment, tools
+
+
+class CairoConan(ConanFile):
+    name = "fplll"
+    version = "5.2.1"
+    license = "LGPL"
+    url = "https://github.com/fplll/fplll"
+    description = "Lattice algorithms using floating-point arithmetic"
+    settings = "os", "compiler", "build_type", "arch"
+    options = {"shared": [True, False]}
+    default_options = "shared=True"
+    generators = "cmake"
+    requires = "gmp/6.1.2@bincrafters/stable", "mpfr/4.0.1@vbeffara/testing"
+
+    def source(self):
+        tools.get(
+            "https://github.com/fplll/fplll/releases/download/5.2.1/fplll-5.2.1.tar.gz")
+
+    def build(self):
+        autotools = AutoToolsBuildEnvironment(self)
+        autotools.configure(configure_dir=self.source_folder+"/fplll-5.2.1")
+        autotools.make()
+        autotools.install()
+
+    def package(self):
+        self.copy("*", src="package")
+
+    def package_info(self):
+        self.cpp_info.libs = ["fplll"]
