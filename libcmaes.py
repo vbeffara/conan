@@ -5,7 +5,7 @@ class LibcmaesConan(ConanFile):
     name = "libcmaes"
     version = "0.9.5+HEAD"
     license = "LGPL3"
-    url = "https://github.com/beniz/libcmaes"
+    url = "http://github.com/beniz/libcmaes"
     description = "libcmaes is a multithreaded C++11 implementation of algorithms of the CMA-ES family"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
@@ -14,7 +14,7 @@ class LibcmaesConan(ConanFile):
     requires = "eigen/3.3.5@conan/stable"
 
     def source(self):
-        self.run("git clone https://github.com/beniz/libcmaes.git")
+        self.run("git clone http://github.com/beniz/libcmaes.git")
         tools.replace_in_file("libcmaes/CMakeLists.txt", "project (libcmaes)",
                               "project (libcmaes) \ninclude(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake) \nconan_basic_setup(KEEP_RPATHS)")
         tools.replace_in_file("libcmaes/src/CMakeLists.txt",
