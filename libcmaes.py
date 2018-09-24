@@ -1,7 +1,7 @@
 from conans import ConanFile, CMake, tools
 
 
-class CMAESConan(ConanFile):
+class LibcmaesConan(ConanFile):
     name = "libcmaes"
     version = "0.9.5+HEAD"
     license = "LGPL3"
@@ -11,11 +11,12 @@ class CMAESConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = "shared=True"
     generators = "cmake"
+    requires = "eigen/3.3.5@conan/stable"
 
     def source(self):
         self.run("git clone https://github.com/beniz/libcmaes.git")
-        # self.run("cd libcmaes && git checkout 0.9.5")
-
+        tools.replace_in_file("libcmaes/CMakeLists.txt", "project (libcmaes)",
+                              "project (libcmaes) \ninclude(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake) \nconan_basic_setup(KEEP_RPATHS)")
         tools.replace_in_file("libcmaes/src/CMakeLists.txt",
                               "target_compile_features", "#")
 
