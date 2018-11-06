@@ -3,7 +3,7 @@ from conans import ConanFile
 
 class PngConan(ConanFile):
     name = "sqlite_modern_cpp"
-    version = "3.2+HEAD"
+    version = "3.2-HEAD"
     license = "MIT"
     url = "https://github.com/SqliteModernCpp/sqlite_modern_cpp"
     description = "C++14 wrapper around sqlite library"

@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class LibcmaesConan(ConanFile):
     name = "libcmaes"
-    version = "0.9.5+HEAD"
+    version = "0.9.5-HEAD"
     license = "LGPL3"
     url = "http://github.com/beniz/libcmaes"
     description = "libcmaes is a multithreaded C++11 implementation of algorithms of the CMA-ES family"
