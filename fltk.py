@@ -19,6 +19,9 @@ class FltkConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
+        if self.settings.os == "Linux":
+            cmake.definitions["CMAKE_C_FLAGS"] = "-fPIC"
+            cmake.definitions["CMAKE_CXX_FLAGS"] = "-fPIC"
         cmake.configure(source_folder="fltk", )
         cmake.build()
 
@@ -39,3 +42,5 @@ class FltkConan(ConanFile):
                 "-framework", "OpenGL", "-framework", "Cocoa"]
             self.cpp_info.exelinkflags = [
                 "-framework", "OpenGL", "-framework", "Cocoa"]
+        if self.settings.os == "Linux":
+            self.cpp_info.libs += ["GLU","GL","X11","Xext","pthread","Xinerama","Xfixes","Xcursor","Xft","Xrender","m","fontconfig","dl"]
