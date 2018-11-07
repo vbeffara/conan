@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class FltkConan(ConanFile):
     name = "fltk"
-    version = "1.4.0-dd8e60a95"
+    version = "1.4.0-055de59c1"
     license = "LGPL"
     url = "http://www.fltk.org/"
     description = "FLTK is a cross-platform C++ GUI toolkit"
@@ -13,16 +13,12 @@ class FltkConan(ConanFile):
 
     def source(self):
         self.run("git clone http://github.com/fltk/fltk.git")
-        self.run("git -C fltk checkout dd8e60a95")
+        self.run("git -C fltk checkout 055de59c1")
         tools.replace_in_file("fltk/CMakeLists.txt", "project(FLTK)",
                               "project(FLTK) \ninclude(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake) \nconan_basic_setup(KEEP_RPATHS)")
 
     def build(self):
         cmake = CMake(self)
-        cmake.definitions["OPTION_BUILD_SHARED_LIBS"] = "ON"
-        if self.settings.os == "Linux":
-            cmake.definitions["CMAKE_C_FLAGS"] = "-fPIC"
-            cmake.definitions["CMAKE_CXX_FLAGS"] = "-fPIC"
         cmake.configure(source_folder="fltk", )
         cmake.build()
 
@@ -37,7 +33,7 @@ class FltkConan(ConanFile):
         self.copy("*fluid", dst="bin", keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = ["fltk_SHARED", "fltk_gl_SHARED"]
+        self.cpp_info.libs = ["fltk", "fltk_gl"]
         if self.settings.os == "Macos":
             self.cpp_info.sharedlinkflags = [
                 "-framework", "OpenGL", "-framework", "Cocoa"]
