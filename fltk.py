@@ -3,17 +3,17 @@ from conans import ConanFile, CMake, tools
 
 class FltkConan(ConanFile):
     name = "fltk"
-    version = "1.4.0-055de59c1"
+    version = "1.4.0-d31228409"
     license = "LGPL"
     url = "http://www.fltk.org/"
     description = "FLTK is a cross-platform C++ GUI toolkit"
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
-    requires = "libjpeg/9c@bincrafters/stable"
+    requires = "libjpeg/9c@bincrafters/stable", "libpng/1.6.34@bincrafters/stable"
 
     def source(self):
         self.run("git clone http://github.com/fltk/fltk.git")
-        self.run("git -C fltk checkout 055de59c1")
+        self.run("git -C fltk checkout d31228409")
         tools.replace_in_file("fltk/CMakeLists.txt", "project(FLTK)",
                               "project(FLTK) \ninclude(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake) \nconan_basic_setup(KEEP_RPATHS)")
 
@@ -43,4 +43,5 @@ class FltkConan(ConanFile):
             self.cpp_info.exelinkflags = [
                 "-framework", "OpenGL", "-framework", "Cocoa"]
         if self.settings.os == "Linux":
-            self.cpp_info.libs += ["GLU","GL","X11","Xext","pthread","Xinerama","Xfixes","Xcursor","Xft","Xrender","m","fontconfig","dl"]
+            self.cpp_info.libs += ["GLU", "GL", "X11", "Xext", "pthread", "Xinerama",
+                                   "Xfixes", "Xcursor", "Xft", "Xrender", "m", "fontconfig", "dl"]
