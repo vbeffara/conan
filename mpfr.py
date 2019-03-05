@@ -3,7 +3,7 @@ from conans import ConanFile, AutoToolsBuildEnvironment, tools
 
 class CairoConan(ConanFile):
     name = "mpfr"
-    version = "4.0.1"
+    version = "4.0.2-1"
     license = "LGPL"
     url = "https://www.mpfr.org/"
     description = "C library for multiple-precision floating-point computations with correct rounding"
@@ -11,14 +11,14 @@ class CairoConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = "shared=True"
     generators = "cmake"
-    requires = "gmp/6.1.2@bincrafters/stable"
+    requires = "mpir/3.0.0-1@vbeffara/testing"
 
     def source(self):
-        tools.get("https://www.mpfr.org/mpfr-current/mpfr-4.0.1.tar.xz")
+        tools.get("https://www.mpfr.org/mpfr-current/mpfr-4.0.2.tar.xz")
 
     def build(self):
         autotools = AutoToolsBuildEnvironment(self)
-        autotools.configure(configure_dir=self.source_folder+"/mpfr-4.0.1")
+        autotools.configure(configure_dir=self.source_folder+"/mpfr-4.0.2")
         autotools.make()
         autotools.install()
 

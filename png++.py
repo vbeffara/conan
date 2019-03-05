@@ -3,12 +3,12 @@ from conans import ConanFile, CMake, tools
 
 class PngConan(ConanFile):
     name = "png++"
-    version = "0.2.5"
+    version = "0.2.5-1"
     license = "BSD"
     url = "https://www.nongnu.org/pngpp/"
     description = "A C++ wrapper for the libpng library"
     generators = "cmake"
-    requires = "libpng/1.6.34@bincrafters/stable"
+    requires = "libpng/1.6.36@bincrafters/stable"
 
     def source(self):
         tools.get(

@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class FltkConan(ConanFile):
     name = "fltk"
-    version = "1.4.0-d31228409"
+    version = "1.4.0-d31228409-1"
     license = "LGPL"
     url = "http://www.fltk.org/"
     description = "FLTK is a cross-platform C++ GUI toolkit"
