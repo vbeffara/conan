@@ -11,7 +11,7 @@ class CairoConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = "shared=True"
     generators = "cmake"
-    requires = "mpfr/4.0.2-1@vbeffara/testing"
+    requires = "mpfr/4.0.2-1@vbeffara/stable"
 
     def source(self):
         tools.get("https://ftp.gnu.org/gnu/mpc/mpc-1.1.0.tar.gz")
