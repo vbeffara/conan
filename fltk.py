@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class FltkConan(ConanFile):
     name = "fltk"
-    version = "1.4.0-d31228409-2"
+    version = "1.3.5-1"
     license = "LGPL"
     url = "http://www.fltk.org/"
     description = "FLTK is a cross-platform C++ GUI toolkit"
@@ -12,8 +12,9 @@ class FltkConan(ConanFile):
     requires = "libjpeg/9c@bincrafters/stable", "libpng/1.6.36@bincrafters/stable"
 
     def source(self):
-        self.run("git clone http://github.com/fltk/fltk.git")
-        self.run("git -C fltk checkout d31228409")
+        self.run(
+            "git clone --branch release-1.3.5 --depth 1 http://github.com/fltk/fltk.git")
+        self.run("rm fltk/VERSION")
         tools.replace_in_file("fltk/CMakeLists.txt", "project(FLTK)",
                               "project(FLTK) \ninclude(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake) \nconan_basic_setup(KEEP_RPATHS)")
 
