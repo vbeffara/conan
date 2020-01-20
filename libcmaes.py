@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class LibcmaesConan(ConanFile):
     name = "libcmaes"
-    version = "0.9.5-7514782ebe-1"
+    version = "0.9.5-7514782ebe-2"
     license = "LGPL3"
     url = "http://github.com/beniz/libcmaes"
     description = "libcmaes is a multithreaded C++11 implementation of algorithms of the CMA-ES family"
@@ -11,7 +11,7 @@ class LibcmaesConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = "shared=True"
     generators = "cmake"
-    requires = "eigen/3.3.7@conan/stable"
+    requires = "eigen/3.3.7"
 
     def source(self):
         self.run("git clone http://github.com/beniz/libcmaes.git")
