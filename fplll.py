@@ -3,7 +3,7 @@ from conans import ConanFile, AutoToolsBuildEnvironment, tools
 
 class CairoConan(ConanFile):
     name = "fplll"
-    version = "5.2.1-2"
+    version = "5.3.2-1"
     license = "LGPL"
     url = "https://github.com/fplll/fplll"
     description = "Lattice algorithms using floating-point arithmetic"
@@ -11,7 +11,7 @@ class CairoConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = "shared=True"
     generators = "cmake"
-    requires = "mpfr/4.0.2@bincrafters/stable"
+    requires = "mpfr/4.0.2"
 
     def source(self):
         tools.get(
