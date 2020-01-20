@@ -3,13 +3,13 @@ from conans import ConanFile, CMake, tools
 
 class FltkConan(ConanFile):
     name = "fltk"
-    version = "1.3.5-2"
+    version = "1.3.5-3"
     license = "LGPL"
     url = "http://www.fltk.org/"
     description = "FLTK is a cross-platform C++ GUI toolkit"
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
-    requires = "libjpeg/9c@bincrafters/stable", "libpng/1.6.37@bincrafters/stable"
+    requires = "libjpeg/9c", "libpng/1.6.37"
 
     def source(self):
         self.run(
